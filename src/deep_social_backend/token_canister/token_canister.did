@@ -1,0 +1,14 @@
+type Amount = nat;
+type Tx = record { id: nat64; from: opt principal; to: principal; amount: Amount; timestamp_ns: nat64 };
+type HistoryEntry = record { id: nat64; direction: text; counterparty: opt principal; amount: Amount; timestamp_ns: nat64 };
+type InitAccount = record { owner: principal; amount: Amount };
+type InitArg = record { initial_accounts: vec InitAccount; airdrop_amount: Amount };
+
+service : {
+  name: () -> (text) query;
+  symbol: () -> (text) query;
+  balance_of: (principal) -> (Amount) query;
+  transfer: (principal, Amount) -> (Tx);
+  airdrop_for_caller: () -> (opt Tx);
+  get_history: (principal, nat64, nat64) -> (vec HistoryEntry) query;
+}

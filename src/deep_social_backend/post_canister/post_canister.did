@@ -1,0 +1,31 @@
+type Comment = record {
+  id: nat64;
+  post_id: nat64;
+  author: principal;
+  author_display: text;
+  text: text;
+  timestamp_ns: nat64;
+};
+
+type Post = record {
+  id: nat64;
+  author: principal;
+  author_display: text;
+  content: text;
+  image_key: opt text;
+  timestamp_ns: nat64;
+  likes: nat64;
+};
+
+type PostDetail = record { post: Post; comments: vec Comment; liked_by_caller: bool };
+
+type SeedPost = record { author: principal; author_display: text; content: text; image_key: opt text };
+type InitArg = record { seed_posts: vec SeedPost };
+
+service : {
+  create_post: (text, text, opt text) -> (variant { ok: Post; err: text });
+  like_post: (nat64) -> (variant { ok: Post; err: text });
+  comment_post: (nat64, text, text) -> (variant { ok: Comment; err: text });
+  get_posts_paginated: (nat64, nat64) -> (vec PostDetail) query;
+  get_posts_by_author: (principal, nat64, nat64) -> (vec PostDetail) query;
+}

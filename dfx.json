@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "canisters": {
+    "token_canister": {
+      "type": "rust",
+      "package": "token_canister",
+      "candid": "src/deep_social_backend/token_canister/token_canister.did",
+      "wasm": "target/wasm32-unknown-unknown/release/token_canister.wasm",
+      "build": "cargo build --target wasm32-unknown-unknown --release",
+      "init_arg": "(record { initial_accounts = vec { record { owner = principal \"qoctq-giaaa-aaaaa-aaaea-cai\"; amount = 1500 }; record { owner = principal \"qaa6y-5yaaa-aaaaa-aaafa-cai\"; amount = 2750 }; record { owner = principal \"rrkah-fqaaa-aaaaa-aaaaq-cai\"; amount = 3200 } }; airdrop_amount = 1000 })"
+    },
+    "user_canister": {
+      "type": "rust",
+      "package": "user_canister",
+      "candid": "src/deep_social_backend/user_canister/user_canister.did",
+      "wasm": "target/wasm32-unknown-unknown/release/user_canister.wasm",
+      "build": "cargo build --target wasm32-unknown-unknown --release",
+      "init_arg": "(record { seed_users = vec { record { user_principal = principal \"qoctq-giaaa-aaaaa-aaaea-cai\"; avatar_key = opt \"profile1.png\"; name = \"User 1\"; email = \"user1.demo@gmail.com\" }; record { user_principal = principal \"qaa6y-5yaaa-aaaaa-aaafa-cai\"; avatar_key = opt \"profile2.png\"; name = \"User 2\"; email = \"user2.demo@gmail.com\" }; record { user_principal = principal \"rrkah-fqaaa-aaaaa-aaaaq-cai\"; avatar_key = opt \"profile3.png\"; name = \"User 3\"; email = \"user3.demo@gmail.com\" } }; token_canister_id = principal \"uzt4z-lp777-77774-qaabq-cai\" })"
+    },
+    "post_canister": {
+      "type": "rust",
+      "package": "post_canister",
+      "candid": "src/deep_social_backend/post_canister/post_canister.did",
+      "wasm": "target/wasm32-unknown-unknown/release/post_canister.wasm",
+      "build": "cargo build --target wasm32-unknown-unknown --release",
+      "init_arg": "(record { seed_posts = vec { record { author = principal \"qoctq-giaaa-aaaaa-aaaea-cai\"; author_display = \"User 1\"; content = \"Sunset vibes — building on-chain!\"; image_key = opt \"feed1.png\" }; record { author = principal \"qaa6y-5yaaa-aaaaa-aaafa-cai\"; author_display = \"User 2\"; content = \"First steps into ICP dev 👣\"; image_key = opt \"feed2.png\" }; record { author = principal \"rrkah-fqaaa-aaaaa-aaaaq-cai\"; author_display = \"User 3\"; content = \"Coffee + Rust = ❤️\"; image_key = opt \"feed3.png\" } } })"
+    },
+    "deep_social_frontend": {
+      "type": "assets",
+      "source": [
+        "src/deep_social_frontend/dist"
+      ],
+      "build": "cd src/deep_social_frontend && npm run build"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "cargo"
+    }
+  },
+  "output_env_file": ".env"
+}

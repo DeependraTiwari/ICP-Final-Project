@@ -1,0 +1,18 @@
+type Profile = record {
+  user_principal: principal;
+  name: text;
+  email: text;
+  avatar_key: opt text;
+  created_at_ns: nat64;
+};
+
+type SeedUser = record { user_principal: principal; avatar_key: opt text; name: text; email: text };
+type InitArg = record { seed_users: vec SeedUser; token_canister_id: principal; };
+
+service : {
+  ensure_user: (opt text, opt text, opt text) -> (Profile);
+  update_profile: (opt text, opt text, opt text) -> (variant { ok: Profile; err: text });
+  get_my_profile: () -> (opt Profile) query;
+  get_profile: (principal) -> (opt Profile) query;
+  search_profiles_by_name: (text, nat64, nat64) -> (vec Profile) query;
+}

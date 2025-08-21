@@ -1,0 +1,23 @@
+/* Root app container */
+.app-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: linear-gradient(to bottom right, #111827, #000000, #111827); /* gray-900 → black → gray-900 */
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content wrapper */
+.main-content {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* Inner content box */
+.content-box {
+  width: 100%;
+  max-width: 42rem; /* Tailwind's max-w-2xl */
+}

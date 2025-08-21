@@ -1,0 +1,19 @@
+
+# Node modules
+**/node_modules
+
+# Build / target folders
+**/target
+**/dist
+
+# Environment variables
+.env
+
+# DFX local files
+.dfx
+
+# Logs
+*.log
+
+# OS files
+.DS_Store

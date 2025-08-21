@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "src/deep_social_backend/src/token_canister",
+    "src/deep_social_backend/src/post_canister",
+    "src/deep_social_backend/src/user_canister"
+]
+
+resolver = "2"
